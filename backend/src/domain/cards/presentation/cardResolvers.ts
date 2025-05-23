@@ -1,4 +1,116 @@
+import { Request, Response } from 'express';
 import { CardModel } from '../schemas/cardSchema.js';
+import { Card } from '../models/card.js';
+
+// GET /flashcards
+export const getFlashcards = async (req: Request, res: Response) => {
+  try {
+    const cards = await CardModel.find().exec();
+    res.json(cards.map(Card.fromDocument));
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+// GET /flashcards/:id
+export const getFlashcardById = async (req: Request, res: Response) => {
+  try {
+    const cardDoc = await CardModel.findById(req.params.id).exec();
+    if (!cardDoc) return res.status(404).json({ message: 'Flashcard not found' });
+
+    res.json(Card.fromDocument(cardDoc));
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+// POST /flashcards
+export const createFlashcard = async (req: Request, res: Response) => {
+  try {
+    const {
+      word,
+      transcription,
+      translation = [],
+      example = [],
+      audioUrl,
+      category,
+      difficulty,
+    } = req.body;
+
+    const existingCard = await CardModel.findOne({ word }).exec();
+    if (existingCard) {
+      return res.status(400).json({ message: `A card with the word "${word}" already exists!` });
+    }
+
+    const newCardDoc = new CardModel({
+      word,
+      transcription,
+      translation,
+      example,
+      audioUrl,
+      category,
+      difficulty,
+    });
+
+    await newCardDoc.save();
+    res.status(201).json(Card.fromDocument(newCardDoc));
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ message: 'Invalid data' });
+  }
+};
+
+// PUT /flashcards/:id
+export const updateFlashcard = async (req: Request, res: Response) => {
+  try {
+    const id = req.params.id;
+    const {
+      word,
+      transcription,
+      translation,
+      example,
+      audioUrl,
+      category,
+      difficulty,
+    } = req.body;
+
+    if (word) {
+      const existingCard = await CardModel.findOne({ word, _id: { $ne: id } }).exec();
+      if (existingCard) {
+        return res.status(400).json({ message: `A card with the word "${word}" already exists!` });
+      }
+    }
+
+    const updatedCard = await CardModel.findByIdAndUpdate(
+      id,
+      { word, transcription, translation, example, audioUrl, category, difficulty },
+      { new: true, runValidators: true }
+    ).exec();
+
+    if (!updatedCard) return res.status(404).json({ message: 'Flashcard not found' });
+
+    res.json(Card.fromDocument(updatedCard));
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ message: 'Invalid data' });
+  }
+};
+
+// DELETE /flashcards/:id
+export const deleteFlashcard = async (req: Request, res: Response) => {
+  try {
+    const deletedCardDoc = await CardModel.findByIdAndDelete(req.params.id).exec();
+    if (!deletedCardDoc) return res.status(404).json({ message: 'Flashcard not found' });
+
+    res.json(Card.fromDocument(deletedCardDoc));
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+/* import { CardModel } from '../schemas/cardSchema.js';
 import { Card } from '../models/card.js';
 
 export const resolvers = {
@@ -110,4 +222,4 @@ export const resolvers = {
       return deletedCardDoc ? Card.fromDocument(deletedCardDoc) : null;
     },
   },
-};
+}; */
