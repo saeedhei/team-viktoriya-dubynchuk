@@ -7,8 +7,8 @@
 //   Mutation,
 //   User,
 // };
-import {resolvers as userResolvers } from '../domain/users/presentation/userResolvers.js'; 
+/* import {resolvers as userResolvers } from '../domain/users/presentation/userResolvers.js'; 
 import { resolvers  as cardResolvers } from '../domain/cards/presentation/cardResolvers.js'; 
 import { mergeResolvers } from '@graphql-tools/merge';
 
-export const resolvers = mergeResolvers([userResolvers, cardResolvers]);
+export const resolvers = mergeResolvers([userResolvers, cardResolvers]); */
