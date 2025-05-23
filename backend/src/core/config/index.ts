@@ -1,20 +1,15 @@
-// export * from './database';
-// export * from './development';
-// export * from './production';
-// export * from './test';
-
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-//  dotenv as ESM 
+//  dotenv as ESM
 import * as dotenv from 'dotenv';
 
 // Load environment-specific .env file
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const envName = process.env.NODE_ENV || 'development'; 
+const envName = process.env.NODE_ENV || 'development';
 const envFile = `.env.${envName}`;
-const envPath = path.resolve(__dirname, '../../../', envFile);// Adjusted path
+const envPath = path.resolve(__dirname, '../../../', envFile); // Adjusted path
 
 console.log(`Loading environment variables from: ${envPath}`); // Debugging
 

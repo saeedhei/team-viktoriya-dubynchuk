@@ -1,16 +1,10 @@
-// without test
 import mongoose from 'mongoose';
 import { mongoConfig } from '../../core/config/database.js';
+
 export const connectToDatabase = async () => {
-  // if (mongoose.connection.readyState === 1) {
-  //   // If already connected, reuse the connection
-  //   return;
-  // }
-  console.log('com');
   try {
     await mongoose.connect(
-      `${mongoConfig.uri}`||
-          `mongodb://localhost:27017/${mongoConfig.dbName}`,
+      `${mongoConfig.uri}` || `mongodb://localhost:27017/${mongoConfig.dbName}`,
       {} as mongoose.ConnectOptions,
     );
     const blue = '\x1b[34m';
@@ -23,4 +17,3 @@ export const connectToDatabase = async () => {
     process.exit(1);
   }
 };
-// connectToDatabase()
