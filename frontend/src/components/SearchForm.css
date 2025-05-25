@@ -7,20 +7,20 @@ form {
   input {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;;
     border-radius: 4px 0 0 4px;
     outline: none;
     transition: border-color 0.3s ease;
   }
   
   input:focus {
-    border-color: #007bff;
+    border-color: #F57C00;
   }
   
   button {
     padding: 10px 20px;
-    border: 1px solid #007bff;
-    background-color: #007bff;
+    border: 1px solid #F57C00 !important;
+    background-color: #F57C00 !important;
     color: #fff;
     border-radius: 0 4px 4px 0;
     cursor: pointer;
@@ -28,6 +28,6 @@ form {
   }
   
   button:hover {
-    background-color: #0056b3;
+    background-color: #EF6C00 !important;
   }
   

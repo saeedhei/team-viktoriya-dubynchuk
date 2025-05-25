@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import FlashcardService from "../services/flashcard.service";
+import "./AddFlashcard.css"
 
 type AddFlashcardProps = {
   onAdded: () => void; 
@@ -15,9 +16,23 @@ const AddFlashcard: React.FC<AddFlashcardProps> = ({ onAdded }) => {
   const handleAddFlashcard = async (e: React.FormEvent) => {
     e.preventDefault();
 
+  const translationArray = translation
+    .split(',')
+    .map(text => ({ language: 'en', text: text.trim() }));
+
+  // Validate category is one of allowed enums (optional but recommended)
+  const allowedCategories = [
+    'verbs', 'nouns', 'adjectives', 'adverbs', 'pronouns',
+    'prepositions', 'conjunctions', 'interjections', 'phrases'
+  ];
+  if (!allowedCategories.includes(category)) {
+    alert(`Category must be one of: ${allowedCategories.join(', ')}`);
+    return;
+  }
+
     const data = {
       word,
-      translation,
+      translation:translationArray,
       category,
       audioUrl,
     };
@@ -36,7 +51,7 @@ const AddFlashcard: React.FC<AddFlashcardProps> = ({ onAdded }) => {
   };
 
   return (
-    <form onSubmit={handleAddFlashcard}>
+    <form className='flashcard-table' onSubmit={handleAddFlashcard}>
       <input
         type="text"
         placeholder="German Word/Phrase"

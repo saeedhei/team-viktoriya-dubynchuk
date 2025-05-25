@@ -1,0 +1,52 @@
+input[type="text"] {
+  width: 60%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-right: 10px;
+  transition: border-color 0.3s ease;
+  color: #333333;
+}
+
+input[type="text"]:focus {
+  border-color:  #F57C00;;
+  outline: none;
+}
+.flashcard-table {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.flashcard-table input[type='text'] {
+  flex: 1 1 200px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.flashcard-table input[type='text']:focus {
+  border-color: #F57C00;
+  outline: none;
+}
+
+.flashcard-table button[type='submit'] {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #F57C00;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.flashcard-table button[type='submit']:hover {
+  background-color: #EF6C00;
+}
