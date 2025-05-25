@@ -10,7 +10,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(query);
+    onSearch(query.trim());
   };
 
   return (
@@ -19,7 +19,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Enter city name"
+        placeholder="Enter flashcard name"
       />
       <button type="submit">Search</button>
     </form>

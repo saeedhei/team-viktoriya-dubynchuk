@@ -25,14 +25,21 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   const handleEditClick = (flashcard: FlashcardData) => {
     setEditingFlashcard(flashcard);
     setEditedWord(flashcard.word);
-    setEditedTranslation(flashcard.translation);
+
+    // If translation is array, join all texts, else empty string
+    const translationText = Array.isArray(flashcard.translation)
+      ? flashcard.translation.map(t => t.text).join(', ')
+      : '';
+    setEditedTranslation(translationText);
   };
 
   const handleSaveClick = async () => {
     if (editingFlashcard) {
       const data = {
         word: editedWord,
-        translation: editedTranslation,
+        translation: editedTranslation
+          .split(',')
+          .map(text => ({ language: 'de', text: text.trim() })),
       };
 
       try {
@@ -77,7 +84,10 @@ const SearchResults: React.FC<SearchResultsProps> = ({
               </>
             ) : (
               <>
-                {flashcard.word} - {flashcard.translation}
+                {flashcard.word} -{' '}
+                {Array.isArray(flashcard.translation)
+                  ? flashcard.translation.map(t => t.text).join(', ')
+                  : flashcard.translation}
                 <button onClick={() => handleEditClick(flashcard)}>Edit</button>
                 <button onClick={() => handleDeleteClick(flashcard._id!)}>Delete</button>
               </>
