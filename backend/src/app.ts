@@ -1,34 +1,23 @@
 import express from 'express';
-import cors from 'cors';
-import { connectToDatabase } from './infrastructure/database/connections.js';
-
-import {
-  getFlashcards,
-  getFlashcardById,
-  createFlashcard,
-  updateFlashcard,
-  deleteFlashcard,
-} from './domain/cards/presentation/cardResolvers.js';
+import bodyParser from 'body-parser';
+// import { UserController } from './modules/user';
+import { CardController } from './modules/card/controller/card.controller.js';
 
 const app = express();
+app.use(bodyParser.json());
 
-connectToDatabase();
+// User routes
+// const userController = new UserController();
+// app.post('/api/users', (req, res) => userController.createUser(req, res));
+// app.get('/api/users', (req, res) => userController.getAllUsers(req, res));
 
-app.use(cors());
-app.use(express.json());
+// Card routes
+const cardController = new CardController();
 
-app.get('/api/flashcards', getFlashcards);
-app.get('/api/flashcards/:id', getFlashcardById);
-app.post('/api/flashcards', createFlashcard);
-app.put('/api/flashcards/:id', updateFlashcard);
-app.delete('/api/flashcards/:id', deleteFlashcard);
+app.post('/api/cards', (req, res) => cardController.createCard(req, res));
+app.get('/api/cards', (req, res) => cardController.getAllCards(req, res));
+app.get('/api/cards/:id', (req, res) => cardController.getCardById(req, res));
+app.put('/api/cards/:id', (req, res) => cardController.updateCard(req, res));
+app.delete('/api/cards/:id', (req, res) => cardController.deleteCard(req, res));
 
-app.get('/', (req, res) => {
-  res.send('Express server is running!');
-});
-
-const port = process.env.PORT || 4000;
-
-app.listen(port, () => {
-  console.log(`Server listening on http://localhost:${port}`);
-});
+export default app;

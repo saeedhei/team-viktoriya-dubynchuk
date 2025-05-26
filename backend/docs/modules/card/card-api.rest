@@ -1,0 +1,35 @@
+### Create a new card
+POST http://localhost:3000/api/cards
+Content-Type: application/json
+
+{
+  "word": "example",
+  "transcription": "ɪgˈzæmpəl",
+  "translation": [
+    { "language": "fa", "text": "نمونه" }
+  ],
+  "example": [
+    { "language": "en", "text": "This is an example sentence." }
+  ],
+  "audioUrl": "http://example.com/audio/example.mp3",
+  "category": "nouns",
+  "difficulty": "easy"
+}
+
+### Get all cards
+GET http://localhost:3000/api/cards
+
+### Get card by ID
+GET http://localhost:3000/api/cards/{cardId}
+
+### Update card by ID
+PUT http://localhost:3000/api/cards/{cardId}
+Content-Type: application/json
+
+{
+  "word": "updated example",
+  "difficulty": "medium"
+}
+
+### Delete card by ID
+DELETE http://localhost:3000/api/cards/{cardId}
