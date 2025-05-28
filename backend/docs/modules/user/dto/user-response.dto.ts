@@ -7,3 +7,4 @@ export interface UserResponseDto {
   name: string;
   role: UserRole;
 }
+ 

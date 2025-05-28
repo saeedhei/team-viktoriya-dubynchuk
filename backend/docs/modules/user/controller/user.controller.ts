@@ -10,7 +10,7 @@ export class UserController {
     if (errors.length > 0) {
       return res.status(400).json({ errors });
     }
-
+ 
     const dto = new CreateUserDto(req.body);
     const user = await userService.createUser(dto);
     res.status(201).json(user);

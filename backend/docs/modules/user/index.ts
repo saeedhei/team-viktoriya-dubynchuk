@@ -11,3 +11,4 @@ export function registerUserRoutes(app: Express) {
   app.put('/api/cards/:id', (req, res) => controller.updateUser(req, res));
   app.delete('/api/users/:id', (req, res) => controller.deleteUser(req, res));
 }
+ 

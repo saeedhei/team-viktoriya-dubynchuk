@@ -7,7 +7,7 @@ export class CreateUserDto {
     this.username = data.username;
     this.email = data.email;
     this.password = data.password;
-  }
+  } 
 
   static validate(data: any): string[] {
     const errors: string[] = [];

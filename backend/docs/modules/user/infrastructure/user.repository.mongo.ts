@@ -12,11 +12,11 @@ export class UserRepositoryMongo implements IUserRepository {
       email: data.email,
       name: data.username,
       password: data.password,
-      role: 'user'
+      role: 'user' 
     };
     this.users.push(user);
     return user;
-  }
+  } 
 
   async findByEmail(email: string): Promise<UserResponseDto | null> {
     return this.users.find(user => user.email === email) || null;

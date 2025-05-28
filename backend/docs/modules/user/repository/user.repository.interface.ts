@@ -6,3 +6,4 @@ export interface IUserRepository {
   findByEmail(email: string): Promise<UserResponseDto | null>;
   findAll(): Promise<UserResponseDto[]>;
 }
+ 

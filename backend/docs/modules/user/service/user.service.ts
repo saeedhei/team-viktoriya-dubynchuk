@@ -14,7 +14,7 @@ export class UserService {
   async getUserByEmail(email: string) {
     return this.userRepository.findByEmail(email);
   }
-  async getUserById(id: string) {
+  async getUserById(id: string) { 
   return this.userRepository.findById(id);
 }
 async updateUser(id: string, updateData: Partial<CreateUserDto>) {
