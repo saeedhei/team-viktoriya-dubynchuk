@@ -23,7 +23,7 @@ export class UserController {
     }
     res.status(200).json(user);
   }
-  async getAllUsers(req: Request, res: Response) {
+  async getAllUsers(_: Request, res: Response) {
     const users = await userService.getAllUsers();
     res.status(200).json(users);
   }
