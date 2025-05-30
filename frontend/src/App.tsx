@@ -1,4 +1,24 @@
-import React, { useState, useEffect } from 'react';
+
+// src/App.tsx
+import React from 'react';
+import './App.css';
+
+
+import CardsPage from './components/card/pages/CardsPage';
+
+const App: React.FC = () => {
+  return (
+    <div className="app-container">
+      <h1 className="text-2xl font-bold mb-4">Card Manager</h1>
+       <CardsPage/>
+    </div>
+  );
+};
+
+export default App;
+
+
+/* import React, { useState, useEffect } from 'react';
 import './App.css';
 
 import SearchForm from './components/SearchFlashCard';
@@ -71,4 +91,4 @@ const App: React.FC = () => {
 };
 
 export default App;
-
+ */
