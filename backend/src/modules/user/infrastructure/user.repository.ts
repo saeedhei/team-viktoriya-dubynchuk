@@ -2,14 +2,14 @@
 import { IUserRepository } from '../repository/user.repository.interface.js';
 import { CreateUserDto } from '../dto/create-user.dto.js';
 import { UpdateUserDto } from '../dto/update-user.dto.js';
-import { UserResponseDto } from '../dto/user-response.dto.js';
+import { UserResponseDto } from '../dto/user.response.dto.js';
 import { v4 as uuidv4 } from 'uuid';
 
 export class UserRepositoryMongo implements IUserRepository {
   private users: UserResponseDto[] = [];
 
   async create(data: CreateUserDto): Promise<UserResponseDto> {
-    const newUser: UserResponseDto = { _id: uuidv4(), role: 'user', ...data };
+    const newUser: UserResponseDto = { _id: uuidv4(), name: data.username, email: data.email, role: 'user' };
     this.users.push(newUser);
     return newUser;
   }

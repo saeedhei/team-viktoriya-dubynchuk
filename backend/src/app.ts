@@ -1,11 +1,14 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from "cors"
 // import { UserController } from './modules/user';
 import { CardController } from './modules/card/controller/card.controller.js';
 
 const app = express();
 app.use(bodyParser.json());
-
+app.use(cors({
+  origin: 'http://localhost:5173',
+}));
 // User routes
 // const userController = new UserController();
 // app.post('/api/users', (req, res) => userController.createUser(req, res));
