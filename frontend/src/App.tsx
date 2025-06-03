@@ -2,16 +2,27 @@
 // src/App.tsx
 import React from 'react';
 import './App.css';
-
-
-import CardsPage from './components/card/pages/CardsPage';
+import AddCardPage  from './components/card/pages/AddCardPage';
+import Navbar from './components/common/Navbar';
+import { Routes, Route } from 'react-router-dom';
+import HomePage from './components/Home/HomePage';
+import LearnPage from './components/card/pages/LearnPage';
+import QuizPage from './components/card/pages/QuizPage';
 
 const App: React.FC = () => {
   return (
-    <div className="app-container">
-      <h1 className="text-2xl font-bold mb-4">Card Manager</h1>
-       <CardsPage/>
-    </div>
+      <div className="min-h-screen bg-gray-100">
+        <Navbar />
+        <main className="p-6">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/learn" element={<LearnPage />} /> 
+          <Route path="/cards" element={<AddCardPage />} />
+          <Route path="/quiz" element={<QuizPage />} /> 
+          </Routes>
+        </main>
+      </div>
+   
   );
 };
 
