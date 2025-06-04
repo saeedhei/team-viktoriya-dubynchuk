@@ -10,22 +10,22 @@ interface CardItemProps {
 
 const CardItem: React.FC<CardItemProps> = ({ card, onDelete, onEdit }) => {
   return (
-    <li className="border p-2 rounded mb-2 flex justify-between items-center">
+    <li className="list-group-item d-flex justify-content-between align-items-center">
       <div>
         <strong>{card.word}</strong> ({card.category}, {card.difficulty})
       </div>
-      <div className="space-x-2">
+      <div className="btn-group">
         {onEdit && (
           <button
             onClick={() => onEdit(card._id)}
-            className="px-2 py-1 bg-yellow-400 text-white rounded"
+            className="btn btn-warning btn-sm"
           >
             Edit
           </button>
         )}
         <button
           onClick={() => onDelete(card._id)}
-          className="px-2 py-1 bg-red-500 text-white rounded"
+          className="btn btn-danger btn-sm"
         >
           Delete
         </button>
