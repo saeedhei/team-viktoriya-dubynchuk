@@ -121,16 +121,33 @@ const CardForm: React.FC<CardFormProps> = ({
   };
 
   return (
-    <>
-      <form className="flashcard-table" onSubmit={handleSubmit}>
-        <CardFormFields formData={formData} setFormData={setFormData} />
-        <button type="submit">{editingCard ? 'Update Card' : 'Add Card'}</button>
-      </form>
+<>
+  <form
+    className="flex flex-col gap-4 p-6 bg-white rounded-lg shadow-md max-w-3xl mx-auto"
+    onSubmit={handleSubmit}
+  >
+    <CardFormFields formData={formData} setFormData={setFormData} />
 
-      {savedCard && (
-        <CardPreview card={savedCard} onEdit={handleEditClick} onDelete={handleDelete} />
-      )}
-    </>
+    <button
+      type="submit"
+      className="self-start px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+    >
+      {editingCard ? 'Update Card' : 'Add Card'}
+    </button>
+  </form>
+
+  {savedCard && (
+    <div className="mt-6 max-w-3xl mx-auto">
+      <CardPreview
+        card={savedCard}
+        onEdit={handleEditClick}
+        onDelete={handleDelete}
+      />
+    </div>
+  )}
+</>
+
+
   );
 };
 

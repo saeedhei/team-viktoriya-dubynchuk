@@ -58,7 +58,6 @@ const PaginatedFlashcards: React.FC<PaginatedFlashcardsProps> = ({
             ))}
           </ul>
 
-          {/* Pagination Controls */}
           <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center', gap: '1rem' }}>
             <button
               onClick={() => handlePageChange(currentPage - 1)}

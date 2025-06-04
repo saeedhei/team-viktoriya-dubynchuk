@@ -21,19 +21,71 @@ const CardFormFields: React.FC<Props> = ({ formData, setFormData }) => {
   };
 
   return (
-    <>
-      <input type="text" placeholder="Word" value={formData.word} onChange={handleChange('word')} required />
-      <input type="text" placeholder="Transcription (optional)" value={formData.transcription} onChange={handleChange('transcription')} />
-      <input type="text" placeholder="Translation(s), comma-separated" value={formData.translation} onChange={handleChange('translation')} required />
-      <input type="text" placeholder="Example(s), comma-separated (optional)" value={formData.example} onChange={handleChange('example')} />
-      <input type="text" placeholder="Audio URL (optional)" value={formData.audioUrl} onChange={handleChange('audioUrl')} />
-      <input type="text" placeholder="Category" value={formData.category} onChange={handleChange('category')} required />
-      <select value={formData.difficulty} onChange={handleChange('difficulty')}>
-        {allowedDifficulties.map(d => (
-          <option key={d} value={d}>{d}</option>
-        ))}
-      </select>
-    </>
+<>
+  <input
+    type="text"
+    placeholder="Word"
+    value={formData.word}
+    onChange={handleChange('word')}
+    required
+    className="w-full p-2 border border-black rounded-md"
+  />
+
+  <input
+    type="text"
+    placeholder="Transcription (optional)"
+    value={formData.transcription}
+    onChange={handleChange('transcription')}
+    className="w-full p-2 border border-black rounded-md"
+  />
+
+  <input
+    type="text"
+    placeholder="Translation(s), comma-separated"
+    value={formData.translation}
+    onChange={handleChange('translation')}
+    required
+    className="w-full p-2 border border-black rounded-md"
+  />
+
+  <input
+    type="text"
+    placeholder="Example(s), comma-separated (optional)"
+    value={formData.example}
+    onChange={handleChange('example')}
+    className="w-full p-2 border border-black rounded-md"
+  />
+
+  <input
+    type="text"
+    placeholder="Audio URL (optional)"
+    value={formData.audioUrl}
+    onChange={handleChange('audioUrl')}
+    className="w-full p-2 border border-black rounded-md"
+  />
+
+  <input
+    type="text"
+    placeholder="Category"
+    value={formData.category}
+    onChange={handleChange('category')}
+    required
+    className="w-full p-2 border border-black rounded-md"
+  />
+
+  <select
+    value={formData.difficulty}
+    onChange={handleChange('difficulty')}
+    className="w-full p-2 border border-black rounded-md bg-white"
+  >
+    {allowedDifficulties.map((d) => (
+      <option key={d} value={d}>
+        {d}
+      </option>
+    ))}
+  </select>
+</>
+
   );
 };
 

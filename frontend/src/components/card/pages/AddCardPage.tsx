@@ -51,7 +51,6 @@ const AddCardPage: React.FC = () => {
     try {
       await deleteCard(id);
       toast.success('Card deleted');
-      // fetchCards(); // You can choose to remove this if onDeleted triggers fetchCards()
       if (editingCard?._id === id) {
         setEditingCard(null);
         setModalOpen(false);
@@ -74,22 +73,19 @@ const AddCardPage: React.FC = () => {
   };
 
   return (
-    <div className="p-4 max-w-4xl mx-auto">
-      {/* Header and Add New Button */}
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <h1 className="h2 fw-bold">Flashcards</h1>
+    <div className="p-10 max-w-7xl  mx-auto mt-6 px-4">
+      <div className="mb-6 max-w-7xl">
+        <h1 className="text-2xl font-bold text-gray-800 mb-4">Flashcards</h1>
         <button
           onClick={handleAddNew}
-          className="btn btn-success"
+          className="px-4 py-2 bg-green-600 text-white rounded-md shadow hover:bg-green-700 transition duration-200"
         >
           + Add New Flashcard
         </button>
       </div>
 
-      {/* Search Bar */}
       <SearchBar onSearch={setSearchTerm} />
 
-      {/* Cards List */}
       <PaginatedFlashcards
         cards={cards}
         searchTerm={searchTerm}
@@ -98,51 +94,46 @@ const AddCardPage: React.FC = () => {
         itemsPerPage={10}
       />
 
-      {/* Modal for Add/Edit Form */}
       {modalOpen && (
         <div
-          className="modal d-block"
-          tabIndex={-1}
-          role="dialog"
-          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center  bg-[url('/AddCard.jpg')] bg-cover bg-center bg-opacity-50"
           onClick={() => {
             setModalOpen(false);
             setEditingCard(null);
           }}
         >
           <div
-            className="modal-dialog modal-lg"
-            role="document"
-            onClick={e => e.stopPropagation()}
+            className="relative  w-full max-w-2xl rounded-xl bg-white p-8 shadow-xl"
+            onClick={(e) => e.stopPropagation()} 
           >
-            <div className="modal-content p-4">
-              <button
-                type="button"
-                className="btn-close position-absolute top-0 end-0 m-3"
-                aria-label="Close"
-                onClick={() => {
-                  setModalOpen(false);
-                  setEditingCard(null);
-                }}
-              />
+            {/* Close Button */}
+            <button
+              aria-label="Close Modal"
+              className="absolute top-0 right-0 text-2xl text-gray-500 hover:text-gray-700"
+              onClick={() => {
+                setModalOpen(false);
+                setEditingCard(null);
+              }}
+            >
+              &times;
+            </button>
 
-              <CardForm
-                editingCard={editingCard || undefined}
-                onAdded={handleAddedOrUpdated}
-                onUpdated={handleAddedOrUpdated}
-                onEdit={setEditingCard}
-                onDeleted={() => {
-                  setModalOpen(false);
-                  fetchCards();
-                }}
-              />
-            </div>
+            {/* Card Form */}
+            <CardForm
+              editingCard={editingCard || undefined}
+              onAdded={handleAddedOrUpdated}
+              onUpdated={handleAddedOrUpdated}
+              onEdit={setEditingCard}
+              onDeleted={() => {
+                setModalOpen(false);
+                fetchCards();
+              }}
+            />
           </div>
         </div>
       )}
     </div>
   );
 };
-
 
 export default AddCardPage;

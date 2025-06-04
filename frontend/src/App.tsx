@@ -12,8 +12,11 @@ import QuizPage from './components/card/pages/QuizPage';
 const App: React.FC = () => {
   return (
       <div className="min-h-screen bg-gray-100">
+       
+
         <Navbar />
         <main className="p-6">
+          
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/learn" element={<LearnPage />} /> 
