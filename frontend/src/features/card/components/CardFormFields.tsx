@@ -1,6 +1,6 @@
 // src/components/Card/CardFormFields.tsx
 import React from 'react';
-import { allowedDifficulties } from './cardFormUtils';
+import { allowedDifficulties } from './cardFormUtils.ts';
 
 type Props = {
   formData: {

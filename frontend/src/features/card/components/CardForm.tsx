@@ -1,14 +1,14 @@
 // src/components/Card/CardForm.tsx
 import React, { useState, useEffect } from 'react';
-import { createCard, updateCard, deleteCard } from './services/cardService';
-import { CardResponseDto } from './types/card';
+import { createCard, updateCard, deleteCard } from '../services/CardService.tsx';
+import { CardResponseDto } from '../../../types/Card';
 import CardFormFields from './CardFormFields.tsx';
-import CardPreview from './ CardPreview.tsx';
+import CardPreview from './CardFormPreview.tsx';
 import {
   allowedCategories,
   allowedDifficulties,
   buildCardPayload,
-} from './cardFormUtils';
+} from './cardFormUtils.ts';
 
 type CardFormProps = {
   onAdded: () => void;
@@ -152,4 +152,3 @@ const CardForm: React.FC<CardFormProps> = ({
 };
 
 export default CardForm;
-

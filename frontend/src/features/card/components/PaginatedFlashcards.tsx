@@ -1,7 +1,7 @@
 
 // src/components/Card/PaginatedCards.tsx
 import React, { useState, useMemo } from 'react';
-import { CardResponseDto } from './types/card';
+import { CardResponseDto } from '.././../../types/Card';
 import CardItem from './CardItem';
 
 type PaginatedFlashcardsProps = {
@@ -84,5 +84,3 @@ const PaginatedFlashcards: React.FC<PaginatedFlashcardsProps> = ({
 };
 
 export default PaginatedFlashcards;
-
-

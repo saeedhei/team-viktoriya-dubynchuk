@@ -1,6 +1,6 @@
 // src/components/Card/CardItem.tsx
 import React from 'react';
-import { CardResponseDto } from './types/card';
+import { CardResponseDto } from '../../../types/Card';
 
 interface CardItemProps {
   card: CardResponseDto;
