@@ -1,4 +1,4 @@
-// src/types/card.ts
+// src/types/Card.ts
 export interface Translation {
   language: string;
   text: string;

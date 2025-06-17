@@ -1,6 +1,6 @@
 // src/components/Card/CardPreview.tsx
 import React from 'react';
-import { CardResponseDto } from './types/card';
+import { CardResponseDto } from '../../../types/Card';
 
 type Props = {
   card: CardResponseDto;

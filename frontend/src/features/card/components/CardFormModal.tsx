@@ -1,7 +1,7 @@
 // src/components/card/FlashcardFormModal.tsx
 import React from 'react';
 import CardForm from './CardForm';
-import { CardResponseDto } from './types/card';
+import { CardResponseDto } from '../../../types/Card';
 
 type Props = {
   isOpen: boolean;
